@@ -105,6 +105,22 @@ function loadScene()
    
    } );
 
+   //Importar un modelo en gltf
+   const glloader2 = new GLTFLoader();
+
+    glloader2.load( 'models/scene.gltf', function ( gltf ) {
+        gltf.scene.position.y = 2;
+        gltf.scene.rotation.y = -Math.PI/2;
+        gltf.scene.name = 'dibujos';
+        esfera.add( gltf.scene );
+    
+    }, undefined, function ( error ) { 
+        
+            console.error( error );
+        
+        }
+    );
+
 
 }
 
