@@ -105,23 +105,18 @@ function loadScene()
    
    } );
 
-   //Importar un modelo en gltf
-   const glloader2 = new GLTFLoader();
+   //Importar nueva escena en gltf
+   const starloader = new GLTFLoader();
 
-    glloader2.load( 'models/scene.gltf', function ( gltf ) {
-        gltf.scene.position.y = 2;
+    starloader.load( 'models/scene.gltf', function ( gltf ) {
+        gltf.scene.position.y = -1;
         gltf.scene.rotation.y = -Math.PI/2;
-        gltf.scene.name = 'dibujos';
+        gltf.scene.name = 'star-wars';
         esfera.add( gltf.scene );
     
-    }, undefined, function ( error ) { 
-        
-            console.error( error );
-        
-        }
-    );
-
-
+    }, undefined, function ( error ) {
+        console.error( error );
+    } );
 }
 
 function setupGUI()
