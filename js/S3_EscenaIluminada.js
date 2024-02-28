@@ -157,6 +157,19 @@ function loadScene()
    
    } );
 
+   //Importar nueva escena en gltf
+   const starloader = new GLTFLoader();
+
+    starloader.load( 'models/scene.gltf', function ( gltf ) {
+        gltf.scene.position.y = -1;
+        gltf.scene.rotation.y = -Math.PI/2;
+        gltf.scene.name = 'star-wars';
+        esfera.add( gltf.scene );
+    
+    }, undefined, function ( error ) {
+        console.error( error );
+    } );
+
     // Habitacion
     const paredes = [];
     paredes.push( new THREE.MeshBasicMaterial({side:THREE.BackSide,
