@@ -49,6 +49,7 @@ function init()
 
     // Luces
     const luzAmbiente = new THREE.AmbientLight(0xFFFFFF,1.0);
+    luzAmbiente.position.y = 13;
     scene.add(luzAmbiente);
     // const direccional = new THREE.DirectionalLight(0xFFFFFF,0.3);
     // direccional.position.set(-1,1,-1);
