@@ -66,7 +66,7 @@ function init()
     // focal.shadow.camera.far = 20;
     // focal.shadow.camera.fov = 80;
     // scene.add(focal);
-    scene.add(new THREE.CameraHelper(focal.shadow.camera));
+    //scene.add(new THREE.CameraHelper(focal.shadow.camera));
 
     // Eventos
     renderer.domElement.addEventListener('dblclick', animate );
