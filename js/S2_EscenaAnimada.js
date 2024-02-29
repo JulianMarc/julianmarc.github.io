@@ -48,7 +48,7 @@ function init()
     camera.lookAt(0,1,0);
 
     // Luces
-    const ambiental = new THREE.AmbientLight(0x222222);
+    const ambiental = new THREE.AmbientLight(0xFF000000,0.3);
     ambiental.position.y = 13;
     scene.add(ambiental);
     // const direccional = new THREE.DirectionalLight(0xFFFFFF,0.3);
