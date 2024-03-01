@@ -54,7 +54,7 @@ function init()
     const luzDirec = new THREE.DirectionalLight(0xFFFFFF,0.5);
     luzDirec.position.set(5.00,14,24.9);
     scene.add(luzDirec);
-    
+
 
     // Eventos
     renderer.domElement.addEventListener('dblclick', animate );
@@ -182,6 +182,36 @@ function animate(event)
         easing( TWEEN.Easing.Exponential.InOut ).
         start();
     }
+    
+    const starDestroyer = scene.getObjectByName('StarShip');
+    const imperialShip = scene.getObjectByName('ImperialStarShip');
+    const deathStar = scene.getObjectByName('DeathStar');
+
+    // Animacion de naves
+    if( starDestroyer != undefined ){
+        new TWEEN.Tween( starDestroyer.position ).
+        to( {x:[-5,5],y:[0,0],z:[-5,5]}, 5000 ).
+        interpolation( TWEEN.Interpolation.Bezier ).
+        easing( TWEEN.Easing.Bounce.Out ).
+        start();
+    }
+
+    if( imperialShip != undefined ){
+        new TWEEN.Tween( imperialShip.position ).
+        to( {x:[5,-5],y:[0,0],z:[5,-5]}, 5000 ).
+        interpolation( TWEEN.Interpolation.Bezier ).
+        easing( TWEEN.Easing.Bounce.Out ).
+        start();
+    }
+
+    if( deathStar != undefined ){
+        new TWEEN.Tween( deathStar.rotation ).
+        to( {x:[0,0],y:[Math.PI,0],z:[0,0]}, 5000 ).
+        interpolation( TWEEN.Interpolation.Bezier ).
+        easing( TWEEN.Easing.Bounce.Out ).
+        start();
+    }
+
 }
 
 function update()
