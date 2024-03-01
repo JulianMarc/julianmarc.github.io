@@ -139,11 +139,11 @@ function update()
     //esferaCubo.rotation.y = angulo;
 
     // Lectura de controles en GUI (es mejor hacerlo con onChange)
-	cubo.position.set( -1-effectController.separacion/2, 0, 0 );
-	esfera.position.set( 1+effectController.separacion/2, 0, 0 );
-	cubo.material.setValues( { color: effectController.colorsuelo } );
-	esferaCubo.rotation.y = effectController.giroY * Math.PI/180;
-    TWEEN.update();
+	// cubo.position.set( -1-effectController.separacion/2, 0, 0 );
+	// esfera.position.set( 1+effectController.separacion/2, 0, 0 );
+	// cubo.material.setValues( { color: effectController.colorsuelo } );
+	// esferaCubo.rotation.y = effectController.giroY * Math.PI/180;
+    // TWEEN.update();
 }
 
 function render()
