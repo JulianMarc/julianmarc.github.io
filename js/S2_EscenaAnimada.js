@@ -187,30 +187,31 @@ function animate(event)
     const imperialShip = scene.getObjectByName('ImperialStarShip');
     const deathStar = scene.getObjectByName('DeathStar');
 
-    // Animacion de naves
-    if( starDestroyer != undefined ){
-        new TWEEN.Tween( starDestroyer.position ).
-        to( {x:[-5,5],y:[0,0],z:[-5,5]}, 5000 ).
-        interpolation( TWEEN.Interpolation.Bezier ).
-        easing( TWEEN.Easing.Bounce.Out ).
-        start();
-    }
+    // Anima las dos naves para que vuelen alrededor de la estrella de la muerte
+    new TWEEN.Tween( starDestroyer.position ).
+    to( {x:[0,0,0,0],y:[0,0,0,0],z:[0,0,0,0]}, 5000 ).
+    interpolation( TWEEN.Interpolation.Bezier ).
+    easing( TWEEN.Easing.Bounce.Out ).
+    start();
 
-    if( imperialShip != undefined ){
-        new TWEEN.Tween( imperialShip.position ).
-        to( {x:[5,-5],y:[0,0],z:[5,-5]}, 5000 ).
-        interpolation( TWEEN.Interpolation.Bezier ).
-        easing( TWEEN.Easing.Bounce.Out ).
-        start();
-    }
+    new TWEEN.Tween( imperialShip.position ).
+    to( {x:[0,0,0,0],y:[0,0,0,0],z:[0,0,0,0]}, 5000 ).
+    interpolation( TWEEN.Interpolation.Bezier ).
+    easing( TWEEN.Easing.Bounce.Out ).
+    start();
 
-    if( deathStar != undefined ){
-        new TWEEN.Tween( deathStar.rotation ).
-        to( {x:[0,0],y:[Math.PI,0],z:[0,0]}, 5000 ).
-        interpolation( TWEEN.Interpolation.Bezier ).
-        easing( TWEEN.Easing.Bounce.Out ).
-        start();
-    }
+    new TWEEN.Tween( deathStar.position ).
+    to( {x:[0,0,0,0],y:[0,0,0,0],z:[0,0,0,0]}, 5000 ).
+    interpolation( TWEEN.Interpolation.Bezier ).
+    easing( TWEEN.Easing.Bounce.Out ).
+    start();
+
+    // Anima la estrella de la muerte para que gire sobre su eje
+    new TWEEN.Tween( deathStar.rotation ).
+    to( {x:[0,0],y:[0,Math.PI*2],z:[0,0]}, 5000 ).
+    interpolation( TWEEN.Interpolation.Bezier ).
+    easing( TWEEN.Easing.Bounce.Out ).
+    start();
 
 }
 
