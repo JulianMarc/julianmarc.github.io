@@ -62,59 +62,7 @@ function init()
 
 function loadScene()
 {
-    // Material sencillo
-    const material = new THREE.MeshBasicMaterial({color:'yellow',wireframe:true});
-
-    // Suelo
-    const suelo = new THREE.Mesh( new THREE.PlaneGeometry(10,10, 10,10), material );
-    suelo.rotation.x = -Math.PI/2;
-    suelo.position.y = -0.2;
-    scene.add(suelo);
-
-    // Esfera y cubo
-    esfera = new THREE.Mesh( new THREE.SphereGeometry(1,20,20), material );
-    cubo = new THREE.Mesh( new THREE.BoxGeometry(2,2,2), material );
-    esfera.position.x = 1;
-    cubo.position.x = -1;
-
-    esferaCubo = new THREE.Object3D();
-    esferaCubo.add(esfera);
-    esferaCubo.add(cubo);
-    esferaCubo.position.y = 1.5;
-
-    scene.add(esferaCubo);
-
-    scene.add( new THREE.AxesHelper(3) );
-    cubo.add( new THREE.AxesHelper(1) );
-
-    // Modelos importados
-    const loader = new THREE.ObjectLoader();
-    loader.load('models/soldado/soldado.json', 
-    function (objeto)
-    {
-        const soldado = new THREE.Object3D();
-        soldado.add(objeto);
-        cubo.add(soldado);
-        soldado.position.y = 1;
-        soldado.name = 'soldado';
-    });
-
-   // Importar un modelo en gltf
-   const glloader = new GLTFLoader();
-
-   glloader.load( 'models/robota/scene.gltf', function ( gltf ) {
-       gltf.scene.position.y = 1;
-       gltf.scene.rotation.y = -Math.PI/2;
-       gltf.scene.name = 'robota';
-       esfera.add( gltf.scene );
-   
-   }, undefined, function ( error ) {
-   
-       console.error( error );
-   
-   } );
-
-   //Importar nueva escena en gltf
+   //Importar modelo en gltf
    const starloader = new GLTFLoader();
 
     starloader.load( 'models/scene.gltf', function ( gltf ) {
@@ -131,22 +79,22 @@ function loadScene()
 function setupGUI()
 {
 	// Definicion de los controles
-	effectController = {
-		mensaje: 'Soldado & Robota',
-		giroY: 0.0,
-		separacion: 0,
-		colorsuelo: "rgb(150,150,150)"
-	};
+	// effectController = {
+	// 	mensaje: 'Soldado & Robota',
+	// 	giroY: 0.0,
+	// 	separacion: 0,
+	// 	colorsuelo: "rgb(150,150,150)"
+	// };
 
 	// Creacion interfaz
 	const gui = new GUI();
 
 	// Construccion del menu
-	const h = gui.addFolder("Control esferaCubo");
-	h.add(effectController, "mensaje").name("Aplicacion");
-	h.add(effectController, "giroY", -180.0, 180.0, 0.025).name("Giro en Y");
-	h.add(effectController, "separacion", { 'Ninguna': 0, 'Media': 2, 'Total': 5 }).name("Separacion");
-    h.addColor(effectController, "colorsuelo").name("Color alambres");
+	// const h = gui.addFolder("Control esferaCubo");
+	// h.add(effectController, "mensaje").name("Aplicacion");
+	// h.add(effectController, "giroY", -180.0, 180.0, 0.025).name("Giro en Y");
+	// h.add(effectController, "separacion", { 'Ninguna': 0, 'Media': 2, 'Total': 5 }).name("Separacion");
+    // h.addColor(effectController, "colorsuelo").name("Color alambres");
 
 }
 
@@ -157,54 +105,24 @@ function animate(event)
     let y = event.clientY;
     x = ( x / window.innerWidth ) * 2 - 1;
     y = -( y / window.innerHeight ) * 2 + 1;
-
-    // Construir el rayo y detectar la interseccion
-    const rayo = new THREE.Raycaster();
-    rayo.setFromCamera(new THREE.Vector2(x,y), camera);
-    const soldado = scene.getObjectByName('soldado');
-    const robot = scene.getObjectByName('robota');
-    let intersecciones = rayo.intersectObjects(soldado.children,true);
-
-    if( intersecciones.length > 0 ){
-        new TWEEN.Tween( soldado.position ).
-        to( {x:[0,0],y:[3,1],z:[0,0]}, 2000 ).
-        interpolation( TWEEN.Interpolation.Bezier ).
-        easing( TWEEN.Easing.Bounce.Out ).
-        start();
-    }
-
-    intersecciones = rayo.intersectObjects(robot.children,true);
-
-    if( intersecciones.length > 0 ){
-        new TWEEN.Tween( robot.rotation ).
-        to( {x:[0,0],y:[Math.PI,-Math.PI/2],z:[0,0]}, 5000 ).
-        interpolation( TWEEN.Interpolation.Linear ).
-        easing( TWEEN.Easing.Exponential.InOut ).
-        start();
-    }
     
     const starDestroyer = scene.getObjectByName('StarShip');
     const imperialShip = scene.getObjectByName('ImperialStarShip');
     const deathStar = scene.getObjectByName('DeathStar');
 
+    var centroEsfera = new THREE.Vector3(0,0,0);
+    var anguloRotacion = 0.01;
+    // var dist = 100;
+
+    // var vector = new THREE.Vector3().subVectors( starDestroyer.position, centroEsfera );
+    // vector.setLength(dist);
+
+    // var vector2 = new THREE.Vector3().subVectors( imperialShip.position, centroEsfera );
+    // vector2.setLength(dist);
+
     // Anima las dos naves para que vuelen alrededor de la estrella de la muerte
-    new TWEEN.Tween( starDestroyer.position ).
-    to( {x:[0,0,0,0],y:[0,0,0,0],z:[0,0,0,0]}, 5000 ).
-    interpolation( TWEEN.Interpolation.Bezier ).
-    easing( TWEEN.Easing.Bounce.Out ).
-    start();
-
-    new TWEEN.Tween( imperialShip.position ).
-    to( {x:[0,0,0,0],y:[0,0,0,0],z:[0,0,0,0]}, 5000 ).
-    interpolation( TWEEN.Interpolation.Bezier ).
-    easing( TWEEN.Easing.Bounce.Out ).
-    start();
-
-    new TWEEN.Tween( deathStar.position ).
-    to( {x:[0,0,0,0],y:[0,0,0,0],z:[0,0,0,0]}, 5000 ).
-    interpolation( TWEEN.Interpolation.Bezier ).
-    easing( TWEEN.Easing.Bounce.Out ).
-    start();
+    starDestroyer.position.rotateAround(centroEsfera,anguloRotacion);
+    imperialShip.position.rotateAround(centroEsfera,anguloRotacion);
 
     // Anima la estrella de la muerte para que gire sobre su eje
     new TWEEN.Tween( deathStar.rotation ).
@@ -233,4 +151,20 @@ function render()
     requestAnimationFrame(render);
     update();
     renderer.render(scene,camera);
+}
+
+THREE.Vector3.prototype.rotateAround = function(origin, radians) {
+    var x = this.x - origin.x;
+    var z = this.z - origin.z;
+
+    var cos = Math.cos(radians);
+    var sin = Math.sin(radians);
+
+    var nx = cos * x - sin * z;
+    var nz = sin * x + cos * z;
+
+    this.x = nx + origin.x;
+    this.z = nz + origin.z;
+
+    return this;
 }
