@@ -54,6 +54,7 @@ function init()
     const luzDirec = new THREE.DirectionalLight(0xFFFFFF,0.5);
     luzDirec.position.set(5.00,14,24.9);
     scene.add(luzDirec);
+    
 
     // Eventos
     renderer.domElement.addEventListener('dblclick', animate );
