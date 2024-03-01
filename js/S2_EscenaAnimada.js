@@ -111,7 +111,10 @@ function animate(event)
     const deathStar = scene.getObjectByName('DeathStar');
 
     var centroEsfera = new THREE.Vector3(0,0,0);
-    var anguloRotacion = 0.01;
+   
+    var reloj = new THREE.Clock();
+    var tiempo = reloj.getElapsedTime();
+    var anguloRotacion = tiempo * 2 * Math.PI;
     // var dist = 100;
 
     // var vector = new THREE.Vector3().subVectors( starDestroyer.position, centroEsfera );
