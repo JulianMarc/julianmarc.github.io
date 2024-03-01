@@ -51,23 +51,9 @@ function init()
     const luzAmbiente = new THREE.AmbientLight(0xFFFFFF,1.0);
     luzAmbiente.position.y = 25;
     scene.add(luzAmbiente);
-    // const direccional = new THREE.DirectionalLight(0xFFFFFF,0.3);
-    // direccional.position.set(-1,1,-1);
-    // direccional.castShadow = false;
-    // scene.add(direccional);
-    // const puntual = new THREE.PointLight(0xFFFFFF,0.5);
-    // puntual.position.set(2,7,-4);
-    // scene.add(puntual);
-    // const focal = new THREE.SpotLight(0xFFFFFF,0.3);
-    // focal.position.set(-2,7,4);
-    // focal.target.position.set(0,0,0);
-    // focal.angle= Math.PI/7;
-    // focal.penumbra = 0.3;
-    // focal.castShadow= true;
-    // focal.shadow.camera.far = 20;
-    // focal.shadow.camera.fov = 80;
-    // scene.add(focal);
-    //scene.add(new THREE.CameraHelper(focal.shadow.camera));
+    const luzDirec = new THREE.DirectionalLight(0xFFFFFF,0.5);
+    luzDirec.position.set(5.00,14,24.9);
+    scene.add(luzDirec);
 
     // Eventos
     renderer.domElement.addEventListener('dblclick', animate );
