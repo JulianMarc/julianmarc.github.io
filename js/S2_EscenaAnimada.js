@@ -23,6 +23,11 @@ let cameraControls, effectController;
 let esferaCubo,cubo,esfera;
 let angulo = 0;
 
+//variables para la animacion
+let dist = 10;
+let centroEsfera = new THREE.Vector3(0,0,0);
+let reloj = new THREE.Clock();
+
 // Acciones
 init();
 loadScene();
@@ -103,7 +108,6 @@ function setupGUI()
 function animate(event)
 {
     requestAnimationFrame(animate);
-    
     // Capturar y normalizar
     let x= event.clientX;
     let y = event.clientY;
@@ -113,13 +117,11 @@ function animate(event)
     const starDestroyer = scene.getObjectByName('StarShip');
     const imperialShip = scene.getObjectByName('ImperialStarShip');
     const deathStar = scene.getObjectByName('DeathStar');
-
-    var centroEsfera = new THREE.Vector3(0,0,0);
    
-    var reloj = new THREE.Clock();
-    var tiempo = reloj.getElapsedTime();
-    var anguloRotacion = tiempo * 2 * Math.PI;
-    var dist = 100;
+    // Calcular el tiempo transcurrido
+    let tiempo = reloj.getElapsedTime();
+    let anguloRotacion = tiempo * 2 * Math.PI;
+    
 
     // var vector = new THREE.Vector3().subVectors( starDestroyer.position, centroEsfera );
     // vector.setLength(dist);
@@ -135,6 +137,8 @@ function animate(event)
     // Actualizar la posicion del objeto
     starDestroyer.position.set(xr,yr,z);
     imperialShip.position.set(xr,yr,z);
+
+    renderer.render(scene,camera);
     // starDestroyer.position.rotateAround(centroEsfera,anguloRotacion);
     // imperialShip.position.rotateAround(centroEsfera,anguloRotacion);
 
