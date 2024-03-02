@@ -24,7 +24,7 @@ let esferaCubo,cubo,esfera;
 let angulo = 0;
 
 //variables para la animacion
-let dist = 10;
+let dist = 100;
 let centroEsfera = new THREE.Vector3(0,0,0);
 let reloj = new THREE.Clock();
 
