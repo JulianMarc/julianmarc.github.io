@@ -20,13 +20,13 @@ let renderer, scene, camera;
 
 // Otras globales
 let cameraControls, effectController;
-let esferaCubo,cubo,esfera;
 let angulo = 0;
 
 //variables para la animacion
-let dist = 100;
+let dist = 50;
 let centroEsfera = new THREE.Vector3(0,0,0);
 let reloj = new THREE.Clock();
+let velocidad = 0.5;
 
 // Acciones
 init();
@@ -120,7 +120,7 @@ function animate(event)
    
     // Calcular el tiempo transcurrido
     let tiempo = reloj.getElapsedTime();
-    let anguloRotacion = tiempo * 2 * Math.PI;
+    let anguloRotacion = tiempo * 2 * Math.PI * velocidad;
     
 
     // var vector = new THREE.Vector3().subVectors( starDestroyer.position, centroEsfera );
