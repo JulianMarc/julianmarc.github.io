@@ -23,10 +23,10 @@ let cameraControls, effectController;
 let angulo = 0;
 
 //variables para la animacion
-let dist = 50;
+let dist = 20;
 let centroEsfera = new THREE.Vector3(0,0,0);
 let reloj = new THREE.Clock();
-let velocidad = 0.5;
+let velocidad = 0.05;
 
 // Acciones
 init();
