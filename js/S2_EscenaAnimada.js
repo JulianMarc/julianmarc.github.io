@@ -79,18 +79,20 @@ function loadScene()
 function setupGUI()
 {
 	// Definicion de los controles
-	// effectController = {
-	// 	mensaje: 'Soldado & Robota',
-	// 	giroY: 0.0,
-	// 	separacion: 0,
-	// 	colorsuelo: "rgb(150,150,150)"
-	// };
+	effectController = {
+	mensaje: 'Star Wars Scene',
+	giroY: 0.0,
+	separacion: 0,
+    play: function() { animate(); }
+	//colorsuelo: "rgb(150,150,150)"
+	};
 
 	// Creacion interfaz
 	const gui = new GUI();
 
 	// Construccion del menu
-	// const h = gui.addFolder("Control esferaCubo");
+	const h = gui.addFolder("Control esferaCubo");
+    h.add(effectController, "play").name("Animar");
 	// h.add(effectController, "mensaje").name("Aplicacion");
 	// h.add(effectController, "giroY", -180.0, 180.0, 0.025).name("Giro en Y");
 	// h.add(effectController, "separacion", { 'Ninguna': 0, 'Media': 2, 'Total': 5 }).name("Separacion");
@@ -115,7 +117,7 @@ function animate(event)
     var reloj = new THREE.Clock();
     var tiempo = reloj.getElapsedTime();
     var anguloRotacion = tiempo * 2 * Math.PI;
-    // var dist = 100;
+    var dist = 100;
 
     // var vector = new THREE.Vector3().subVectors( starDestroyer.position, centroEsfera );
     // vector.setLength(dist);
@@ -123,16 +125,23 @@ function animate(event)
     // var vector2 = new THREE.Vector3().subVectors( imperialShip.position, centroEsfera );
     // vector2.setLength(dist);
 
-    // Anima las dos naves para que vuelen alrededor de la estrella de la muerte
-    starDestroyer.position.rotateAround(centroEsfera,anguloRotacion);
-    imperialShip.position.rotateAround(centroEsfera,anguloRotacion);
+    //Calcular la nueva posicion del objeto
+    var xr = centroEsfera.x + dist * Math.cos(anguloRotacion);
+    var yr = centroEsfera.y;
+    var z = centroEsfera.z + dist * Math.sin(anguloRotacion);
+    
+    // Actualizar la posicion del objeto
+    starDestroyer.position.set(xr,yr,z);
+    imperialShip.position.set(xr,yr,z);
+    // starDestroyer.position.rotateAround(centroEsfera,anguloRotacion);
+    // imperialShip.position.rotateAround(centroEsfera,anguloRotacion);
 
     // Anima la estrella de la muerte para que gire sobre su eje
-    new TWEEN.Tween( deathStar.rotation ).
-    to( {x:[0,0],y:[0,Math.PI*2],z:[0,0]}, 5000 ).
-    interpolation( TWEEN.Interpolation.Bezier ).
-    easing( TWEEN.Easing.Bounce.Out ).
-    start();
+    // new TWEEN.Tween( deathStar.rotation ).
+    // to( {x:[0,0],y:[0,Math.PI*2],z:[0,0]}, 5000 ).
+    // interpolation( TWEEN.Interpolation.Bezier ).
+    // easing( TWEEN.Easing.Bounce.Out ).
+    // start();
 
 }
 
