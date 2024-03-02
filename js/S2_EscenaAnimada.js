@@ -117,6 +117,10 @@ function animate(event)
     const starDestroyer = scene.getObjectByName('StarShip');
     const imperialShip = scene.getObjectByName('ImperialStarShip');
     const deathStar = scene.getObjectByName('DeathStar');
+
+    // Posicion original de las naves
+    let posStar = starDestroyer.position;
+    let posImperial = imperialShip.position;
    
     // Calcular el tiempo transcurrido
     let tiempo = reloj.getElapsedTime();
