@@ -83,7 +83,7 @@ function setupGUI()
 	mensaje: 'Star Wars Scene',
 	giroY: 0.0,
 	separacion: 0,
-    play: function() { animate(); }
+    play:  animate()
 	//colorsuelo: "rgb(150,150,150)"
 	};
 
@@ -91,7 +91,7 @@ function setupGUI()
 	const gui = new GUI();
 
 	// Construccion del menu
-	const h = gui.addFolder("Control esferaCubo");
+	const h = gui.addFolder("Control de la animacion");
     h.add(effectController, "play").name("Animar");
 	// h.add(effectController, "mensaje").name("Aplicacion");
 	// h.add(effectController, "giroY", -180.0, 180.0, 0.025).name("Giro en Y");
