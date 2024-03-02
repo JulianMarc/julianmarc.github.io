@@ -83,7 +83,7 @@ function setupGUI()
 	mensaje: 'Star Wars Scene',
 	giroY: 0.0,
 	separacion: 0,
-    play:  animate()
+    play: function(){animate();} 
 	//colorsuelo: "rgb(150,150,150)"
 	};
 
@@ -102,6 +102,8 @@ function setupGUI()
 
 function animate(event)
 {
+    requestAnimationFrame(animate);
+    
     // Capturar y normalizar
     let x= event.clientX;
     let y = event.clientY;
