@@ -28,6 +28,7 @@ let centroEsfera = new THREE.Vector3(0,0,0);
 let reloj = new THREE.Clock();
 let velocidad = 0.05;
 
+
 // Acciones
 init();
 loadScene();
@@ -105,6 +106,19 @@ function setupGUI()
 
 }
 
+// Objetos de la escena
+const starDestroyer = scene.getObjectByName('StarShip');
+const imperialShip = scene.getObjectByName('ImperialStarShip');
+const deathStar = scene.getObjectByName('DeathStar');
+
+// Posicion original de las naves
+let posStar = starDestroyer.position.clone();
+let posImperial = imperialShip.position.clone();
+
+// Angulo inicial de las naves
+let anguloStarInit = Math.atan2(posStar.z - centroEsfera.z, posStar.x - centroEsfera.x);
+let anguloImperialInit = Math.atan2(posImperial.z - centroEsfera.z, posImperial.x - centroEsfera.x);
+
 function animate(event)
 {
     requestAnimationFrame(animate);
@@ -113,18 +127,13 @@ function animate(event)
     let y = event.clientY;
     x = ( x / window.innerWidth ) * 2 - 1;
     y = -( y / window.innerHeight ) * 2 + 1;
-    
-    const starDestroyer = scene.getObjectByName('StarShip');
-    const imperialShip = scene.getObjectByName('ImperialStarShip');
-    const deathStar = scene.getObjectByName('DeathStar');
-
-    // Posicion original de las naves
-    let posStar = starDestroyer.position;
-    let posImperial = imperialShip.position;
    
     // Calcular el tiempo transcurrido
     let tiempo = reloj.getElapsedTime();
-    let anguloRotacion = tiempo * 2 * Math.PI * velocidad;
+
+    // Calcular el angulo de rotacion de los dos objetos (naves)
+    let anguloRotacionStar = tiempo * 2 * Math.PI * velocidad + anguloStarInit;
+    let anguloRotacionImperial = tiempo * 2 * Math.PI * velocidad + anguloImperialInit;
     
 
     // var vector = new THREE.Vector3().subVectors( starDestroyer.position, centroEsfera );
@@ -133,14 +142,19 @@ function animate(event)
     // var vector2 = new THREE.Vector3().subVectors( imperialShip.position, centroEsfera );
     // vector2.setLength(dist);
 
-    //Calcular la nueva posicion del objeto
-    var xr = centroEsfera.x + dist * Math.cos(anguloRotacion);
-    var yr = centroEsfera.y;
-    var z = centroEsfera.z + dist * Math.sin(anguloRotacion);
+    //Calcular la nueva posicion del objeto starDestroyer
+    var xs = centroEsfera.x + dist * Math.cos(anguloRotacionStar);
+    var ys = centroEsfera.y;
+    var zs = centroEsfera.z + dist * Math.sin(anguloRotacionStar);
+
+    //Calcular la nueva posicion del objeto imperialShip
+    var xi = centroEsfera.x + dist * Math.cos(anguloRotacionImperial);
+    var yi = centroEsfera.y;
+    var zi = centroEsfera.z + dist * Math.sin(anguloRotacionImperial);
     
     // Actualizar la posicion del objeto
-    starDestroyer.position.set(xr,yr,z);
-    imperialShip.position.set(xr,yr,z);
+    starDestroyer.position.set(xs,ys,zs);
+    imperialShip.position.set(xi,yi,zi);
 
     renderer.render(scene,camera);
     // starDestroyer.position.rotateAround(centroEsfera,anguloRotacion);
