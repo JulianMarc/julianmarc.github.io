@@ -93,7 +93,7 @@ function setupGUI()
 	giroY: 0.0,
 	separacion: 0,
     play: function(){animate();}, 
-    play: function(){animar = !animar;}
+    pause: function(){animar = !animar;}
 	//colorsuelo: "rgb(150,150,150)"
 	};
 
@@ -103,7 +103,7 @@ function setupGUI()
 	// Construccion del menu
 	const h = gui.addFolder("Control de la animacion");
     h.add(effectController, "play").name("Animar");
-    h.add(effectController, "play").name("Parar");
+    h.add(effectController, "pause").name("Parar");
 	// h.add(effectController, "mensaje").name("Aplicacion");
 	// h.add(effectController, "giroY", -180.0, 180.0, 0.025).name("Giro en Y");
 	// h.add(effectController, "separacion", { 'Ninguna': 0, 'Media': 2, 'Total': 5 }).name("Separacion");
