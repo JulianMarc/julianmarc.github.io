@@ -29,7 +29,7 @@ let reloj = new THREE.Clock();
 let velocidad = 0.00005;
 
 // variable para parar la animacion
-let animar = true;
+//let animar = true;
 
 
 // Acciones
@@ -93,7 +93,7 @@ function setupGUI()
 	giroY: 0.0,
 	separacion: 0,
     play: function(){animate();}, 
-    pause: function(){animar = !animar;}
+    //pause: function(){animar = !animar;}
 	//colorsuelo: "rgb(150,150,150)"
 	};
 
@@ -103,7 +103,7 @@ function setupGUI()
 	// Construccion del menu
 	const h = gui.addFolder("Control de la animacion");
     h.add(effectController, "play").name("Animar");
-    h.add(effectController, "pause").name("Parar");
+    //h.add(effectController, "pause").name("Parar");
 	// h.add(effectController, "mensaje").name("Aplicacion");
 	// h.add(effectController, "giroY", -180.0, 180.0, 0.025).name("Giro en Y");
 	// h.add(effectController, "separacion", { 'Ninguna': 0, 'Media': 2, 'Total': 5 }).name("Separacion");
@@ -115,7 +115,7 @@ function setupGUI()
 
 function animate(event)
 {
-    if (!animar) {return;}
+    //if (!animar) {return;}
 
     requestAnimationFrame(animate);
     // Capturar y normalizar
