@@ -26,7 +26,7 @@ let angulo = 0;
 let dist = 20;
 let centroEsfera = new THREE.Vector3(0,0,0);
 let reloj = new THREE.Clock();
-let velocidad = 0.0000005;
+let velocidad = 0.000005;
 
 
 // Acciones
