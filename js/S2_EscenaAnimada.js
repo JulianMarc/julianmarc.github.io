@@ -115,6 +115,8 @@ function setupGUI()
 
 function animate(event)
 {
+    if (!animar) return;
+    
     requestAnimationFrame(animate);
     // Capturar y normalizar
     let x= event.clientX;
