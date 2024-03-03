@@ -28,9 +28,6 @@ let centroEsfera = new THREE.Vector3(0,0,0);
 let reloj = new THREE.Clock();
 let velocidad = 0.00005;
 
-// variable para parar la animacion
-//let animar = true;
-
 
 // Acciones
 init();
@@ -92,7 +89,7 @@ function setupGUI()
 	mensaje: 'Star Wars Scene',
 	giroY: 0.0,
 	separacion: 0,
-    play: function(){animate();}, 
+    play: function(){animate();} 
     //pause: function(){animar = !animar;}
 	//colorsuelo: "rgb(150,150,150)"
 	};
