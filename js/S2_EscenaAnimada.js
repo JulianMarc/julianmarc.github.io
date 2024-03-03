@@ -106,18 +106,7 @@ function setupGUI()
 
 }
 
-// Objetos de la escena
-const starDestroyer = scene.getObjectByName('StarShip');
-const imperialShip = scene.getObjectByName('ImperialStarShip');
-const deathStar = scene.getObjectByName('DeathStar');
 
-// Posicion original de las naves
-let posStar = starDestroyer.position.clone();
-let posImperial = imperialShip.position.clone();
-
-// Angulo inicial de las naves
-let anguloStarInit = Math.atan2(posStar.z - centroEsfera.z, posStar.x - centroEsfera.x);
-let anguloImperialInit = Math.atan2(posImperial.z - centroEsfera.z, posImperial.x - centroEsfera.x);
 
 function animate(event)
 {
@@ -127,6 +116,19 @@ function animate(event)
     let y = event.clientY;
     x = ( x / window.innerWidth ) * 2 - 1;
     y = -( y / window.innerHeight ) * 2 + 1;
+
+    // Objetos de la escena
+    const starDestroyer = scene.getObjectByName('StarShip');
+    const imperialShip = scene.getObjectByName('ImperialStarShip');
+    const deathStar = scene.getObjectByName('DeathStar');
+
+    // Posicion original de las naves
+    let posStar = starDestroyer.position.clone();
+    let posImperial = imperialShip.position.clone();
+
+    // Angulo inicial de las naves
+    let anguloStarInit = Math.atan2(posStar.z - centroEsfera.z, posStar.x - centroEsfera.x);
+    let anguloImperialInit = Math.atan2(posImperial.z - centroEsfera.z, posImperial.x - centroEsfera.x);
    
     // Calcular el tiempo transcurrido
     let tiempo = reloj.getElapsedTime();
