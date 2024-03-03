@@ -133,6 +133,9 @@ function animate(event)
     // Calcular el tiempo transcurrido
     let tiempo = reloj.getElapsedTime();
 
+    // Si el tiempo excede el periodo de una rotación, reiniciar el reloj
+    if (tiempo >= 1/velocidad) reloj.start();
+
     // Calcular el angulo de rotacion de los dos objetos (naves)
     let anguloRotacionStar = tiempo * 2 * Math.PI * velocidad + anguloStarInit;
     let anguloRotacionImperial = tiempo * 2 * Math.PI * velocidad + anguloImperialInit;
