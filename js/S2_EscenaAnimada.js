@@ -168,6 +168,10 @@ function animate(event)
     starDestroyer.position.set(xs,ys,zs);
     imperialShip.position.set(xi,yi,zi);
 
+    // Actualizar la rotación de la nave
+    starDestroyer.rotation.y += 2 * Math.PI / (1/velocidad);
+    imperialShip.rotation.y += 2 * Math.PI / (1/velocidad);
+
     renderer.render(scene,camera);
     // starDestroyer.position.rotateAround(centroEsfera,anguloRotacion);
     // imperialShip.position.rotateAround(centroEsfera,anguloRotacion);
