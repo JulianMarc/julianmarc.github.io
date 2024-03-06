@@ -175,7 +175,7 @@ function animate(event)
 
     // Crear un cuaternión para la rotación adicional
     let quaternionRotacion = new THREE.Quaternion();
-    quaternionRotacion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), -(Math.PI / 2));
+    quaternionRotacion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), (Math.PI / 2));
 
     // Combinar las rotaciones
     quaternionStar.multiply(quaternionRotacion);
