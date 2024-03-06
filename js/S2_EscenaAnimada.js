@@ -133,6 +133,10 @@ function animate(event)
     let posStar = starDestroyer.position.clone();
     let posImperial = imperialShip.position.clone();
 
+    // Rotacion original de las naves
+    let rotStar = starDestroyer.rotation.y.clone();
+    let rotImperial = imperialShip.rotation.y.clone();
+
     // Angulo inicial de las naves
     let anguloStarInit = Math.atan2(posStar.z - centroEsfera.z, posStar.x - centroEsfera.x);
     let anguloImperialInit = Math.atan2(posImperial.z - centroEsfera.z, posImperial.x - centroEsfera.x);
@@ -169,8 +173,8 @@ function animate(event)
     imperialShip.position.set(xi,yi,zi);
 
     // Actualizar la rotación de la nave
-    starDestroyer.rotation.y += 2 * Math.PI / (1/velocidad);
-    imperialShip.rotation.y += 2 * Math.PI / (1/velocidad);
+    starDestroyer.rotation.y = rotStar + 2 * Math.PI / (1/velocidad);
+    imperialShip.rotation.y = rotImperial + 2 * Math.PI / (1/velocidad);
 
     renderer.render(scene,camera);
     // starDestroyer.position.rotateAround(centroEsfera,anguloRotacion);
