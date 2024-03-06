@@ -150,13 +150,6 @@ function animate(event)
     // Calcular el angulo de rotacion de los dos objetos (naves)
     let anguloRotacionStar = tiempo * 2 * Math.PI * velocidad + anguloStarInit;
     let anguloRotacionImperial = tiempo * 2 * Math.PI * velocidad + anguloImperialInit;
-    
-
-    // var vector = new THREE.Vector3().subVectors( starDestroyer.position, centroEsfera );
-    // vector.setLength(dist);
-
-    // var vector2 = new THREE.Vector3().subVectors( imperialShip.position, centroEsfera );
-    // vector2.setLength(dist);
 
     //Calcular la nueva posicion del objeto starDestroyer
     var xs = centroEsfera.x + dist * Math.cos(anguloRotacionStar);
@@ -175,6 +168,11 @@ function animate(event)
     // Las naves miran al centro de la esfera
     starDestroyer.lookAt(centroEsfera);
     imperialShip.lookAt(centroEsfera);
+
+    // Ajustar la rotación de las naves para que no miren al centro de la esfera
+    let ajusteRotacion = Math.PI/2;
+    starDestroyer.rotation.y += ajusteRotacion;
+    imperialShip.rotation.y += ajusteRotacion;
 
     // Actualizar la rotación de la nave
     starDestroyer.rotation.y -= 2 * Math.PI / (1/velocidad);
