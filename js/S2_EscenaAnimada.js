@@ -93,7 +93,8 @@ function setupGUI()
 	giroY: 0.0,
 	separacion: 0,
     play: function(){ animar = true; animate();},
-    pause: function(){animar = false;}, 
+    pause: function(){animar = false;},
+    playLaser: function(){ dispararLaser();}, 
 	//colorsuelo: "rgb(150,150,150)"
 	};
 
@@ -104,6 +105,7 @@ function setupGUI()
 	const h = gui.addFolder("Control de la animacion");
     h.add(effectController, "play").name("Animar");
     h.add(effectController, "pause").name("Pausar");
+    h.add(effectController, "playLaser").name("Disparar Laser");
 	// h.add(effectController, "mensaje").name("Aplicacion");
 	// h.add(effectController, "giroY", -180.0, 180.0, 0.025).name("Giro en Y");
 	// h.add(effectController, "separacion", { 'Ninguna': 0, 'Media': 2, 'Total': 5 }).name("Separacion");
@@ -134,8 +136,8 @@ function animate(event)
     let posImperial = imperialShip.position.clone();
 
     // Rotacion original de las naves
-    let rotStar = starDestroyer.rotation.clone();
-    let rotImperial = imperialShip.rotation.clone();
+    // let rotStar = starDestroyer.rotation.clone();
+    // let rotImperial = imperialShip.rotation.clone();
 
     // Angulo inicial de las naves
     let anguloStarInit = Math.atan2(posStar.z - centroEsfera.z, posStar.x - centroEsfera.x);
@@ -190,29 +192,56 @@ function animate(event)
     imperialShip.rotation.y -= 2 * Math.PI / (1/velocidad);
 
     renderer.render(scene,camera);
-    // starDestroyer.position.rotateAround(centroEsfera,anguloRotacion);
-    // imperialShip.position.rotateAround(centroEsfera,anguloRotacion);
+}
 
-    // Anima la estrella de la muerte para que gire sobre su eje
-    // new TWEEN.Tween( deathStar.rotation ).
-    // to( {x:[0,0],y:[0,Math.PI*2],z:[0,0]}, 5000 ).
-    // interpolation( TWEEN.Interpolation.Bezier ).
-    // easing( TWEEN.Easing.Bounce.Out ).
-    // start();
+function crearLaser(origen) {
+    let geometriaLaser = new THREE.CylinderGeometry(0.02, 0.02, 1, 32); // Ajusta el tamaño a tu gusto
+    let materialLaser = new THREE.MeshBasicMaterial({color: 0xFF5733}); // Ajusta el color a tu gusto
+    let laser = new THREE.Mesh(geometriaLaser, materialLaser);
 
+    // Posicionar el láser en el origen
+    laser.position.copy(origen);
+
+    // Hacer que el láser mire al centro de la esfera
+    laser.lookAt(centroEsfera);
+
+    return laser;
+}
+
+function dispararLaser(event){
+    // Capturar y normalizar
+    let x= event.clientX;
+    let y = event.clientY;
+    x = ( x / window.innerWidth ) * 2 - 1;
+    y = -( y / window.innerHeight ) * 2 + 1;
+
+    // Objetos de la escena
+    const starDestroyer = scene.getObjectByName('StarShip');
+    const imperialShip = scene.getObjectByName('ImperialStarShip');
+    const deathStar = scene.getObjectByName('DeathStar');
+
+    // Posicion actual de las naves
+    let posStar = starDestroyer.position.clone();
+    let posImperial = imperialShip.position.clone();
+
+    // Crear un láser para cada nave
+    let laserStar = crearLaser(posStar);
+    let laserImperial = crearLaser(posImperial);
+
+    // Añadir los láseres a la escena
+    scene.add(laserStar);
+    scene.add(laserImperial);
 }
 
 function update()
 {
-    angulo += 0.01;
-    //esferaCubo.rotation.y = angulo;
-
-    // Lectura de controles en GUI (es mejor hacerlo con onChange)
-	// cubo.position.set( -1-effectController.separacion/2, 0, 0 );
-	// esfera.position.set( 1+effectController.separacion/2, 0, 0 );
-	// cubo.material.setValues( { color: effectController.colorsuelo } );
-	// esferaCubo.rotation.y = effectController.giroY * Math.PI/180;
-    // TWEEN.update();
+    // Mover los láseres hacia el centro de la esfera
+    scene.children.forEach(function(objeto) {
+        if (objeto instanceof THREE.Mesh && objeto.geometry instanceof THREE.CylinderGeometry) {
+            // Ajusta la velocidad a tu gusto
+            objeto.position.lerp(centroEsfera, 0.01);
+        }
+    });
 }
 
 function render()
