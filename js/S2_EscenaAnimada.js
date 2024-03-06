@@ -169,10 +169,21 @@ function animate(event)
     starDestroyer.lookAt(centroEsfera);
     imperialShip.lookAt(centroEsfera);
 
-    // Ajustar la rotación de las naves para que no miren al centro de la esfera
-    let ajusteRotacion = -(Math.PI/2);
-    starDestroyer.rotation.y -= ajusteRotacion;
-    imperialShip.rotation.y -= ajusteRotacion;
+    // Guardar la rotación actual como un cuaternión
+    let quaternionStar = starDestroyer.quaternion.clone();
+    let quaternionImperial = imperialShip.quaternion.clone();
+
+    // Crear un cuaternión para la rotación adicional
+    let quaternionRotacion = new THREE.Quaternion();
+    quaternionRotacion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), -(Math.PI / 2));
+
+    // Combinar las rotaciones
+    quaternionStar.multiply(quaternionRotacion);
+    quaternionImperial.multiply(quaternionRotacion);
+
+    // Aplicar la rotación combinada
+    starDestroyer.quaternion.copy(quaternionStar);
+    imperialShip.quaternion.copy(quaternionImperial);
 
     // Actualizar la rotación de la nave
     starDestroyer.rotation.y -= 2 * Math.PI / (1/velocidad);
