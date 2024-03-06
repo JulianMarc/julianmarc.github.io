@@ -171,8 +171,8 @@ function animate(event)
 
     // Ajustar la rotación de las naves para que no miren al centro de la esfera
     let ajusteRotacion = -(Math.PI/2);
-    starDestroyer.rotation.y += ajusteRotacion;
-    imperialShip.rotation.y += ajusteRotacion;
+    starDestroyer.rotation.y -= ajusteRotacion;
+    imperialShip.rotation.y -= ajusteRotacion;
 
     // Actualizar la rotación de la nave
     starDestroyer.rotation.y -= 2 * Math.PI / (1/velocidad);
