@@ -195,7 +195,7 @@ function animate(event)
 }
 
 function crearLaser(origen) {
-    let geometriaLaser = new THREE.CylinderGeometry(0.02, 0.02, 1, 32); // Ajusta el tamaño a tu gusto
+    let geometriaLaser = new THREE.CylinderGeometry(2, 2, 1, 32); // Ajusta el tamaño a tu gusto
     let materialLaser = new THREE.MeshBasicMaterial({color: 0xFF5733}); // Ajusta el color a tu gusto
     let laser = new THREE.Mesh(geometriaLaser, materialLaser);
 
@@ -209,7 +209,7 @@ function crearLaser(origen) {
 }
 
 function dispararLaser(event){
-    // Capturar y normalizar
+    // Capturar y normalizar las coordenadas del ratón
     let x= event.clientX;
     let y = event.clientY;
     x = ( x / window.innerWidth ) * 2 - 1;
