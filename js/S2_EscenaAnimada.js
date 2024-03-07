@@ -210,10 +210,10 @@ function crearLaser(origen) {
 
 function dispararLaser(event){
     // Capturar y normalizar las coordenadas del ratón
-    let x= event.clientX;
-    let y = event.clientY;
-    x = ( x / window.innerWidth ) * 2 - 1;
-    y = -( y / window.innerHeight ) * 2 + 1;
+    // let x= event.clientX;
+    // let y = event.clientY;
+    // x = ( x / window.innerWidth ) * 2 - 1;
+    // y = -( y / window.innerHeight ) * 2 + 1;
 
     // Objetos de la escena
     const starDestroyer = scene.getObjectByName('StarShip');
