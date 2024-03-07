@@ -191,6 +191,8 @@ function animate(event)
     starDestroyer.rotation.y -= 2 * Math.PI / (1/velocidad);
     imperialShip.rotation.y -= 2 * Math.PI / (1/velocidad);
 
+    print(starDestroyer.position);
+
     renderer.render(scene,camera);
 }
 
@@ -227,6 +229,9 @@ function dispararLaser(event){
     // Crear un láser para cada nave
     let laserStar = crearLaser(starDestroyer.position);
     let laserImperial = crearLaser(imperialShip.position);
+
+    print(laserStar.position);
+    print(starDestroyer.position);
 
     // Añadir los láseres a la escena
     scene.add(laserStar);
