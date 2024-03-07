@@ -121,10 +121,10 @@ function animate(event)
     
     requestAnimationFrame(animate);
     // Capturar y normalizar
-    let x= event.clientX;
-    let y = event.clientY;
-    x = ( x / window.innerWidth ) * 2 - 1;
-    y = -( y / window.innerHeight ) * 2 + 1;
+    // let x= event.clientX;
+    // let y = event.clientY;
+    // x = ( x / window.innerWidth ) * 2 - 1;
+    // y = -( y / window.innerHeight ) * 2 + 1;
 
     // Objetos de la escena
     const starDestroyer = scene.getObjectByName('StarShip');
