@@ -191,6 +191,8 @@ function animate(event)
     starDestroyer.rotation.y -= 2 * Math.PI / (1/velocidad);
     imperialShip.rotation.y -= 2 * Math.PI / (1/velocidad);
 
+    console.log(starDestroyer);
+
     renderer.render(scene,camera);
 }
 
