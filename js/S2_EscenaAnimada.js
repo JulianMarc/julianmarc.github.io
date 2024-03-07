@@ -195,8 +195,8 @@ function animate(event)
 }
 
 function crearLaser(origen) {
-    let geometriaLaser = new THREE.CylinderGeometry(2, 2, 1, 32); // Ajusta el tamaño a tu gusto
-    let materialLaser = new THREE.MeshBasicMaterial({color: 0xFF5733}); // Ajusta el color a tu gusto
+    let geometriaLaser = new THREE.CylinderGeometry(0.02, 0.02, 1, 32); // Ajusta el tamaño a tu gusto
+    let materialLaser = new THREE.MeshBasicMaterial({color: 0xFF0000}); // Ajusta el color a tu gusto
     let laser = new THREE.Mesh(geometriaLaser, materialLaser);
 
     // Posicionar el láser en el origen
@@ -221,8 +221,8 @@ function dispararLaser(event){
     const deathStar = scene.getObjectByName('DeathStar');
 
     // Posicion actual de las naves
-    let posStar = starDestroyer.position.clone();
-    let posImperial = imperialShip.position.clone();
+    let posStar = starDestroyer.position;
+    let posImperial = imperialShip.position;
 
     // Crear un láser para cada nave
     let laserStar = crearLaser(posStar);
