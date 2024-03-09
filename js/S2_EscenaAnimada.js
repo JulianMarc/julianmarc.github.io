@@ -261,7 +261,7 @@ function update()
             objeto.position.lerp(centroEsfera, 0.01);
         }
     });
-
+    // Hola
     // Mover los láseres hacia el centro de la esfera
     imperialShip.children.forEach(function(objeto) {
         if (objeto instanceof THREE.Mesh && objeto.geometry instanceof THREE.CylinderGeometry) {
