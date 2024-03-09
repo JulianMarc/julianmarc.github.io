@@ -221,14 +221,14 @@ function dispararLaser(event){
     const deathStar = scene.getObjectByName('DeathStar');
 
     // Posicion actual de las naves
-    let posStar = starDestroyer.position;
-    let posImperial = imperialShip.position;
+    //let posStar = starDestroyer.position;
+    //let posImperial = imperialShip.position;
 
     //let centro = new THREE.Vector3(0,0,0);
 
     // Crear un láser para cada nave
-    let laserStar = crearLaser(posStar);
-    let laserImperial = crearLaser(posImperial);
+    let laserStar = crearLaser(starDestroyer.position);
+    let laserImperial = crearLaser(imperialShip.position);
 
     starDestroyer.add(laserStar);
     imperialShip.add(laserImperial);
