@@ -235,13 +235,15 @@ function dispararLaser(event){
 
     // starDestroyer.add(laserStar);
     // imperialShip.add(laserImperial);
-    
-    console.log(starDestroyer);
-    console.log(imperialShip);
 
     // Añadir los láseres a la escena
     scene.add(laserStar);
     scene.add(laserImperial);
+
+    console.log(starDestroyer);
+    console.log(imperialShip);
+    console.log(laserStar);
+    console.log(laserImperial);
 }
 
 function update()
