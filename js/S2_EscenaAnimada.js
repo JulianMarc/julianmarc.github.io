@@ -224,11 +224,11 @@ function dispararLaser(event){
     // let posStar = starDestroyer.position;
     // let posImperial = imperialShip.position;
 
-    let centro = new THREE.Vector3(0,0,0);
+    //let centro = new THREE.Vector3(0,0,0);
 
     // Crear un láser para cada nave
-    let laserStar = crearLaser(centro);
-    let laserImperial = crearLaser(centro);
+    let laserStar = crearLaser(centroEsfera);
+    let laserImperial = crearLaser(centroEsfera);
 
     starDestroyer.add(laserStar);
     imperialShip.add(laserImperial);
