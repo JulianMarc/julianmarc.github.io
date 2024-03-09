@@ -235,7 +235,7 @@ function dispararLaser(event){
 
     starDestroyer.add(laserStar);
     imperialShip.add(laserImperial);
-
+    //
     console.log(starDestroyer);
     console.log(imperialShip);
 
