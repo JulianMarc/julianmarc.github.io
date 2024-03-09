@@ -233,42 +233,42 @@ function dispararLaser(event){
     let laserStar = crearLaser(starDestroyer.position);
     let laserImperial = crearLaser(imperialShip.position);
 
-    starDestroyer.add(laserStar);
-    imperialShip.add(laserImperial);
-    //
+    // starDestroyer.add(laserStar);
+    // imperialShip.add(laserImperial);
+    
     console.log(starDestroyer);
     console.log(imperialShip);
 
     // Añadir los láseres a la escena
-    //scene.add(laserStar);
-    //scene.add(laserImperial);
+    scene.add(laserStar);
+    scene.add(laserImperial);
 }
 
 function update()
 {
     // Mover los láseres hacia el centro de la esfera
-    // scene.children.forEach(function(objeto) {
+    scene.children.forEach(function(objeto) {
+        if (objeto instanceof THREE.Mesh && objeto.geometry instanceof THREE.CylinderGeometry) {
+            objeto.position.lerp(centroEsfera, 0.01);
+        }
+    });
+
+    // starDestroyer = scene.getObjectByName('StarShip');
+    // imperialShip = scene.getObjectByName('ImperialStarShip');
+
+    // // Mover los láseres hacia el centro de la esfera
+    // starDestroyer.children.forEach(function(objeto) {
     //     if (objeto instanceof THREE.Mesh && objeto.geometry instanceof THREE.CylinderGeometry) {
     //         objeto.position.lerp(centroEsfera, 0.01);
     //     }
     // });
-
-    starDestroyer = scene.getObjectByName('StarShip');
-    imperialShip = scene.getObjectByName('ImperialStarShip');
-
-    // Mover los láseres hacia el centro de la esfera
-    starDestroyer.children.forEach(function(objeto) {
-        if (objeto instanceof THREE.Mesh && objeto.geometry instanceof THREE.CylinderGeometry) {
-            objeto.position.lerp(centroEsfera, 0.01);
-        }
-    });
     
-    // Mover los láseres hacia el centro de la esfera
-    imperialShip.children.forEach(function(objeto) {
-        if (objeto instanceof THREE.Mesh && objeto.geometry instanceof THREE.CylinderGeometry) {
-            objeto.position.lerp(centroEsfera, 0.01);
-        }
-    });
+    // // Mover los láseres hacia el centro de la esfera
+    // imperialShip.children.forEach(function(objeto) {
+    //     if (objeto instanceof THREE.Mesh && objeto.geometry instanceof THREE.CylinderGeometry) {
+    //         objeto.position.lerp(centroEsfera, 0.01);
+    //     }
+    // });
 }
 
 function render()
