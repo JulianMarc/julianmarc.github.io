@@ -246,7 +246,6 @@ function update()
     // Mover los láseres hacia el centro de la esfera
     // scene.children.forEach(function(objeto) {
     //     if (objeto instanceof THREE.Mesh && objeto.geometry instanceof THREE.CylinderGeometry) {
-    //         // Ajusta la velocidad a tu gusto
     //         objeto.position.lerp(centroEsfera, 0.01);
     //     }
     // });
@@ -257,18 +256,19 @@ function update()
     // Mover los láseres hacia el centro de la esfera
     starDestroyer.children.forEach(function(objeto) {
         if (objeto instanceof THREE.Mesh && objeto.geometry instanceof THREE.CylinderGeometry) {
-            // Ajusta la velocidad a tu gusto
             objeto.position.lerp(centroEsfera, 0.01);
         }
     });
-    // Hola
+    
     // Mover los láseres hacia el centro de la esfera
     imperialShip.children.forEach(function(objeto) {
         if (objeto instanceof THREE.Mesh && objeto.geometry instanceof THREE.CylinderGeometry) {
-            // Ajusta la velocidad a tu gusto
             objeto.position.lerp(centroEsfera, 0.01);
         }
     });
+
+    console.log(starDestroyer);
+    console.log(imperialShip);
 }
 
 function render()
