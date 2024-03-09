@@ -239,7 +239,7 @@ function dispararLaser(event){
     // Añadir los láseres a la escena
     scene.add(laserStar);
     scene.add(laserImperial);
-    //
+    
     console.log(starDestroyer);
     console.log(imperialShip);
     console.log(laserStar);
