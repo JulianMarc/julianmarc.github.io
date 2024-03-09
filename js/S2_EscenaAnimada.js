@@ -22,6 +22,11 @@ let renderer, scene, camera;
 let cameraControls, effectController;
 let angulo = 0;
 
+// Objetos de la escena
+let starDestroyer;
+let imperialShip;
+let deathStar;
+
 //variables para la animacion
 let dist = 20;
 let centroEsfera = new THREE.Vector3(0,0,0);
@@ -127,9 +132,9 @@ function animate(event)
     // y = -( y / window.innerHeight ) * 2 + 1;
 
     // Objetos de la escena
-    const starDestroyer = scene.getObjectByName('StarShip');
-    const imperialShip = scene.getObjectByName('ImperialStarShip');
-    const deathStar = scene.getObjectByName('DeathStar');
+    starDestroyer = scene.getObjectByName('StarShip');
+    imperialShip = scene.getObjectByName('ImperialStarShip');
+    deathStar = scene.getObjectByName('DeathStar');
 
     // Posicion original de las naves
     let posStar = starDestroyer.position.clone();
@@ -216,8 +221,8 @@ function dispararLaser(event){
     // y = -( y / window.innerHeight ) * 2 + 1;
 
     // Objetos de la escena
-    const starDestroyer = scene.getObjectByName('StarShip');
-    const imperialShip = scene.getObjectByName('ImperialStarShip');
+    starDestroyer = scene.getObjectByName('StarShip');
+    imperialShip = scene.getObjectByName('ImperialStarShip');
     // Posicion actual de las naves
     //let posStar = starDestroyer.position;
     //let posImperial = imperialShip.position;
@@ -228,15 +233,37 @@ function dispararLaser(event){
     let laserStar = crearLaser(starDestroyer.position);
     let laserImperial = crearLaser(imperialShip.position);
 
+    starDestroyer.add(laserStar);
+    imperialShip.add(laserImperial);
+
     // Añadir los láseres a la escena
-    scene.add(laserStar);
-    scene.add(laserImperial);
+    //scene.add(laserStar);
+    //scene.add(laserImperial);
 }
 
 function update()
 {
     // Mover los láseres hacia el centro de la esfera
-    scene.children.forEach(function(objeto) {
+    // scene.children.forEach(function(objeto) {
+    //     if (objeto instanceof THREE.Mesh && objeto.geometry instanceof THREE.CylinderGeometry) {
+    //         // Ajusta la velocidad a tu gusto
+    //         objeto.position.lerp(centroEsfera, 0.01);
+    //     }
+    // });
+
+    starDestroyer = scene.getObjectByName('StarShip');
+    imperialShip = scene.getObjectByName('ImperialStarShip');
+
+    // Mover los láseres hacia el centro de la esfera
+    starDestroyer.children.forEach(function(objeto) {
+        if (objeto instanceof THREE.Mesh && objeto.geometry instanceof THREE.CylinderGeometry) {
+            // Ajusta la velocidad a tu gusto
+            objeto.position.lerp(centroEsfera, 0.01);
+        }
+    });
+
+    // Mover los láseres hacia el centro de la esfera
+    imperialShip.children.forEach(function(objeto) {
         if (objeto instanceof THREE.Mesh && objeto.geometry instanceof THREE.CylinderGeometry) {
             // Ajusta la velocidad a tu gusto
             objeto.position.lerp(centroEsfera, 0.01);
