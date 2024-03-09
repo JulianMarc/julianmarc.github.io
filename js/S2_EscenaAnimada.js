@@ -218,8 +218,6 @@ function dispararLaser(event){
     // Objetos de la escena
     const starDestroyer = scene.getObjectByName('StarShip');
     const imperialShip = scene.getObjectByName('ImperialStarShip');
-    const deathStar = scene.getObjectByName('DeathStar');
-
     // Posicion actual de las naves
     //let posStar = starDestroyer.position;
     //let posImperial = imperialShip.position;
@@ -230,12 +228,9 @@ function dispararLaser(event){
     let laserStar = crearLaser(starDestroyer.position);
     let laserImperial = crearLaser(imperialShip.position);
 
-    starDestroyer.add(laserStar);
-    imperialShip.add(laserImperial);
-
     // Añadir los láseres a la escena
-    // scene.add(laserStar);
-    // scene.add(laserImperial);
+    scene.add(laserStar);
+    scene.add(laserImperial);
 }
 
 function update()
