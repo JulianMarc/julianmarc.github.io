@@ -236,6 +236,9 @@ function dispararLaser(event){
     starDestroyer.add(laserStar);
     imperialShip.add(laserImperial);
 
+    console.log(starDestroyer);
+    console.log(imperialShip);
+
     // Añadir los láseres a la escena
     //scene.add(laserStar);
     //scene.add(laserImperial);
@@ -266,9 +269,6 @@ function update()
             objeto.position.lerp(centroEsfera, 0.01);
         }
     });
-
-    console.log(starDestroyer);
-    console.log(imperialShip);
 }
 
 function render()
