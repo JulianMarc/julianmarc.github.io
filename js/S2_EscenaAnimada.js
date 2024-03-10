@@ -108,7 +108,8 @@ function setupGUI()
 	separacion: 0,
     play: function(){ animar = true; animate();},
     pause: function(){animar = false;},
-    playLaser: function(){ dispararLaser();}, 
+    playLaserStar: function(){ dispararLaserStar();},
+    playLaserNaves: function(){ dispararLaserNaves();}, 
 	//colorsuelo: "rgb(150,150,150)"
 	};
 
@@ -119,12 +120,8 @@ function setupGUI()
 	const h = gui.addFolder("Control de la animacion");
     h.add(effectController, "play").name("Animar");
     h.add(effectController, "pause").name("Pausar");
-    h.add(effectController, "playLaser").name("Disparar Laser");
-	// h.add(effectController, "mensaje").name("Aplicacion");
-	// h.add(effectController, "giroY", -180.0, 180.0, 0.025).name("Giro en Y");
-	// h.add(effectController, "separacion", { 'Ninguna': 0, 'Media': 2, 'Total': 5 }).name("Separacion");
-    // h.addColor(effectController, "colorsuelo").name("Color alambres");
-
+    h.add(effectController, "playLaserStar").name("Disparar Estrella de la Muerte");
+    h.add(effectController, "playLaserNaves").name("Disparar Naves");
 }
 
 
@@ -217,33 +214,36 @@ function crearLaser(origen) {
     return laser;
 }
 
-function dispararLaser(event){
-    // Capturar y normalizar las coordenadas del ratón
-    // let x= event.clientX;
-    // let y = event.clientY;
-    // x = ( x / window.innerWidth ) * 2 - 1;
-    // y = -( y / window.innerHeight ) * 2 + 1;
-
+function dispararLaserStar(event){
     // Objetos de la escena
-    starDestroyer = scene.getObjectByName('StarShip');
-    imperialShip = scene.getObjectByName('ImperialStarShip');
     deathStar = scene.getObjectByName('DeathStar');
-    // Posicion actual de las naves
-    //let posStar = starDestroyer.position;
-    //let posImperial = imperialShip.position;
 
-    //let centro = new THREE.Vector3(0,0,0);
-
-    // Crear un láser para cada nave
+    // Crear láser
     let laserStar = crearLaser(deathStar.position);
-    //let laserImperial = crearLaser(imperialShip.position);
-
-    // starDestroyer.add(laserStar);
-    // imperialShip.add(laserImperial);
 
     // Añadir los láseres a la escena
     scene.add(laserStar);
-    //scene.add(laserImperial);
+}
+
+function dispararLaserNaves(event){
+    // Objetos de la escena
+    starDestroyer = scene.getObjectByName('StarShip');
+    imperialShip = scene.getObjectByName('ImperialStarShip');
+
+    // Posicion actual de las naves
+    let posStar = starDestroyer.position;
+    let posImperial = imperialShip.position;
+
+    // Crear un láser para cada nave
+    let laserStar = crearLaser(posStar);
+    let laserImperial = crearLaser(posImperial);
+
+    starDestroyer.add(laserStar);
+    imperialShip.add(laserImperial);
+
+    // Añadir los láseres a la escena
+    scene.add(laserStar);
+    scene.add(laserImperial);
 }
 
 function update()
@@ -254,23 +254,6 @@ function update()
             objeto.position.lerp(centroEsfera, 0.01);
         }
     });
-
-    // starDestroyer = scene.getObjectByName('StarShip');
-    // imperialShip = scene.getObjectByName('ImperialStarShip');
-
-    // // Mover los láseres hacia el centro de la esfera
-    // starDestroyer.children.forEach(function(objeto) {
-    //     if (objeto instanceof THREE.Mesh && objeto.geometry instanceof THREE.CylinderGeometry) {
-    //         objeto.position.lerp(centroEsfera, 0.01);
-    //     }
-    // });
-    
-    // // Mover los láseres hacia el centro de la esfera
-    // imperialShip.children.forEach(function(objeto) {
-    //     if (objeto instanceof THREE.Mesh && objeto.geometry instanceof THREE.CylinderGeometry) {
-    //         objeto.position.lerp(centroEsfera, 0.01);
-    //     }
-    // });
 }
 
 function render()
