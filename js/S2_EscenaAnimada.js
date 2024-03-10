@@ -206,22 +206,6 @@ function crearLaser(origen) {
     // Hacer que el láser mire al centro de la esfera
     laser.lookAt(centroEsfera);
 
-    // Guardar la rotación actual como un cuaternión
-    let quaternionLaser = laser.quaternion.clone();
-
-    // Crear un cuaternión para la rotación adicional
-    let quaternionRotacion = new THREE.Quaternion();
-    quaternionRotacion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), (Math.PI / 2));
-
-    // Combinar las rotaciones
-    quaternionLaser.multiply(quaternionRotacion);
-
-    // Aplicar la rotación combinada
-    laser.quaternion.copy(quaternionStar);
-
-    // Actualizar la rotación del laser
-    laser.rotation.y -= 2 * Math.PI / (1/velocidad);
-
     return laser;
 }
 
