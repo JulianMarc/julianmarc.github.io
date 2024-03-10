@@ -143,7 +143,6 @@ function animate(event)
     // Objetos de la escena
     starDestroyer = scene.getObjectByName('StarShip');
     imperialShip = scene.getObjectByName('ImperialStarShip');
-    deathStar = scene.getObjectByName('DeathStar');
 
     // Posicion original de las naves
     let posStar = starDestroyer.position.clone();
@@ -228,6 +227,7 @@ function dispararLaser(event){
     // Objetos de la escena
     starDestroyer = scene.getObjectByName('StarShip');
     imperialShip = scene.getObjectByName('ImperialStarShip');
+    deathStar = scene.getObjectByName('DeathStar');
     // Posicion actual de las naves
     //let posStar = starDestroyer.position;
     //let posImperial = imperialShip.position;
@@ -235,20 +235,15 @@ function dispararLaser(event){
     //let centro = new THREE.Vector3(0,0,0);
 
     // Crear un láser para cada nave
-    let laserStar = crearLaser(starDestroyer.position);
-    let laserImperial = crearLaser(imperialShip.position);
+    let laserStar = crearLaser(deathStar.position);
+    //let laserImperial = crearLaser(imperialShip.position);
 
     // starDestroyer.add(laserStar);
     // imperialShip.add(laserImperial);
 
     // Añadir los láseres a la escena
     scene.add(laserStar);
-    scene.add(laserImperial);
-    
-    console.log(starDestroyer);
-    console.log(imperialShip);
-    console.log(laserStar);
-    console.log(laserImperial);
+    //scene.add(laserImperial);
 }
 
 function update()
