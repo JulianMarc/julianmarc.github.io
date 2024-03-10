@@ -215,7 +215,7 @@ function crearLaser(origen) {
 }
 
 function crearLaserStar() {
-    let geometriaLaser = new THREE.CylinderGeometry(10, 0.2, 1, 32);
+    let geometriaLaser = new THREE.CylinderGeometry(5, 0.2, 1, 32);
     let materialLaser = new THREE.MeshBasicMaterial({color: 0xFF0000});
     let laser = new THREE.Mesh(geometriaLaser, materialLaser);
 
