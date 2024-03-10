@@ -91,7 +91,7 @@ function loadScene()
 
     galaxy.load('models/scenaGalaxia.gltf', function(gltf){
         gltf.scene.position.y = 0;
-        gltf.scene.rotation.y = -Math.PI/2;
+        //gltf.scene.rotation.y = -Math.PI/2;
         gltf.scene.name = 'galaxy';
         scene.add(gltf.scene);
     }, undefined, function (error){
