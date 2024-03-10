@@ -28,7 +28,7 @@ let imperialShip;
 let deathStar;
 
 //variables para la animacion
-let dist = 20;
+let dist = 40;
 let centroEsfera = new THREE.Vector3(0,0,0);
 let reloj = new THREE.Clock();
 let velocidad = 0.00002;
