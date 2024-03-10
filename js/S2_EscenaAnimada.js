@@ -140,10 +140,6 @@ function animate(event)
     let posStar = starDestroyer.position.clone();
     let posImperial = imperialShip.position.clone();
 
-    // Rotacion original de las naves
-    // let rotStar = starDestroyer.rotation.clone();
-    // let rotImperial = imperialShip.rotation.clone();
-
     // Angulo inicial de las naves
     let anguloStarInit = Math.atan2(posStar.z - centroEsfera.z, posStar.x - centroEsfera.x);
     let anguloImperialInit = Math.atan2(posImperial.z - centroEsfera.z, posImperial.x - centroEsfera.x);
@@ -209,6 +205,22 @@ function crearLaser(origen) {
 
     // Hacer que el láser mire al centro de la esfera
     laser.lookAt(centroEsfera);
+
+    // Guardar la rotación actual como un cuaternión
+    let quaternionLaser = laser.quaternion.clone();
+
+    // Crear un cuaternión para la rotación adicional
+    let quaternionRotacion = new THREE.Quaternion();
+    quaternionRotacion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), (Math.PI / 2));
+
+    // Combinar las rotaciones
+    quaternionLaser.multiply(quaternionRotacion);
+
+    // Aplicar la rotación combinada
+    laser.quaternion.copy(quaternionStar);
+
+    // Actualizar la rotación del laser
+    laser.rotation.y -= 2 * Math.PI / (1/velocidad);
 
     return laser;
 }
