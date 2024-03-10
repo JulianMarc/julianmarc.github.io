@@ -56,7 +56,7 @@ function init()
 
     // Instanciar la camara
     camera= new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,1,100);
-    camera.position.set(-20,5,7);
+    camera.position.set(-24.50,-19,-0.11);
     cameraControls = new OrbitControls( camera, renderer.domElement );
     cameraControls.target.set(0,1,0);
     camera.lookAt(0,1,0);
@@ -77,17 +77,29 @@ function init()
 function loadScene()
 {
    //Importar modelo en gltf
-   const starloader = new GLTFLoader();
+//    const starloader = new GLTFLoader();
 
-    starloader.load( 'models/scene.gltf', function ( gltf ) {
+//     starloader.load( 'models/scene.gltf', function ( gltf ) {
+//         gltf.scene.position.y = 0;
+//         gltf.scene.rotation.y = -Math.PI/2;
+//         gltf.scene.name = 'star-wars';
+//         scene.add( gltf.scene );
+    
+//     }, undefined, function ( error ) {
+//         console.error( error );
+//     } );
+
+    //Importar scena Galaxia gltf
+    const galaxy = new GLTFLoader();
+
+    galaxy.load('models/galaxy.gltf', function(gltf){
         gltf.scene.position.y = 0;
         gltf.scene.rotation.y = -Math.PI/2;
-        gltf.scene.name = 'star-wars';
-        scene.add( gltf.scene );
-    
-    }, undefined, function ( error ) {
-        console.error( error );
-    } );
+        gltf.scene.name = 'galaxy';
+        scene.add(gltf.scene);
+    }, undefined, function (error){
+        console.error(error);
+    });
 }
 
 function setupGUI()
