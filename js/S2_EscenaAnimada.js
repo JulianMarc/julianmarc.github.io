@@ -55,7 +55,7 @@ function init()
     scene.background = new THREE.Color(0.5,0.5,0.5);
 
     // Instanciar la camara
-    camera= new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,1,100);
+    camera= new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.01,500);
     camera.position.set(-24.50,-19,-0.11);
     cameraControls = new OrbitControls( camera, renderer.domElement );
     cameraControls.target.set(0,1,0);
@@ -68,9 +68,6 @@ function init()
     const luzDirec = new THREE.DirectionalLight(0xFFFFFF,0.5);
     luzDirec.position.set(5.00,14,24.9);
     scene.add(luzDirec);
-
-
-    // Eventos
     
 }
 
