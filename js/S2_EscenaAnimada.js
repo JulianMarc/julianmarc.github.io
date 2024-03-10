@@ -92,7 +92,7 @@ function loadScene()
     //Importar scena Galaxia gltf
     const galaxy = new GLTFLoader();
 
-    galaxy.load('models/galaxy.gltf', function(gltf){
+    galaxy.load('models/scenaGalaxia.gltf', function(gltf){
         gltf.scene.position.y = 0;
         gltf.scene.rotation.y = -Math.PI/2;
         gltf.scene.name = 'galaxy';
