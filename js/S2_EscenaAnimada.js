@@ -201,7 +201,7 @@ function animate(event)
 }
 
 function crearLaser(origen) {
-    let geometriaLaser = new THREE.CylinderGeometry(0.2, 0.2, 0.2, 32);
+    let geometriaLaser = new THREE.CylinderGeometry(0.02, 0.02, 0.2, 32);
     let materialLaser = new THREE.MeshBasicMaterial({color: 0xFF0000});
     let laser = new THREE.Mesh(geometriaLaser, materialLaser);
 
